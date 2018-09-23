@@ -237,12 +237,6 @@ INCLUDE "data/tilesets/johto_modern_collision.asm"
 TilesetTraditionalHouseGFX::
 INCBIN "gfx/tilesets/traditional_house.2bpp.lz"
 
-TilesetTraditionalHouseMeta::
-INCBIN "data/tilesets/traditional_house_metatiles.bin"
-
-TilesetTraditionalHouseColl::
-INCLUDE "data/tilesets/traditional_house_collision.asm"
-
 
 SECTION "Tileset Data 6", ROMX
 
@@ -323,6 +317,12 @@ INCLUDE "data/tilesets/ruins_of_alph_collision.asm"
 
 
 SECTION "Tileset Data 8", ROMX
+
+TilesetTraditionalHouseMeta::
+INCBIN "data/tilesets/traditional_house_metatiles.bin"
+
+TilesetTraditionalHouseColl::
+INCLUDE "data/tilesets/traditional_house_collision.asm"
 
 TilesetHoOhWordRoomMeta::
 INCBIN "data/tilesets/ho_oh_word_room_metatiles.bin"
