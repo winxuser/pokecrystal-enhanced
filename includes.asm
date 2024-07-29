@@ -72,3 +72,4 @@ INCLUDE "vc/pokecrystal11.constants.asm"
 endc
 
 INCLUDE "macros/legacy.asm"
+INCLUDE "pokedex_options.asm"
