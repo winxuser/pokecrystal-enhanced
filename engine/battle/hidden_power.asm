@@ -104,5 +104,6 @@ HiddenPowerDamage:
 	push af
 	farcall BattleCommand_DamageStats ; damagestats
 	pop af
+	or SPECIAL
 	ld d, a
 	ret
