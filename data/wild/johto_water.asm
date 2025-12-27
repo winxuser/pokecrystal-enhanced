@@ -166,22 +166,22 @@ JohtoWaterWildMons:
 	def_water_wildmons ROUTE_40
 	db 6 percent ; encounter rate
 	db 20, TENTACOOL
-	db 15, TENTACOOL
-	db 20, TENTACRUEL
+	db 21, SHELLDER
+	db 22, TENTACRUEL
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_41
 	db 6 percent ; encounter rate
 	db 20, TENTACOOL
-	db 20, TENTACRUEL
-	db 20, MANTINE
+	db 21, HORSEA
+	db 22, MANTINE
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_42
 	db 4 percent ; encounter rate
+	db 21, REMORAID
 	db 20, GOLDEEN
-	db 15, GOLDEEN
-	db 20, SEAKING
+	db 25, SEAKING
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_43
@@ -194,8 +194,8 @@ JohtoWaterWildMons:
 	def_water_wildmons ROUTE_44
 	db 2 percent ; encounter rate
 	db 25, POLIWAG
-	db 20, POLIWAG
-	db 25, POLIWHIRL
+	db 24, POLIWAG
+	db 28, POLIWHIRL
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_45
@@ -207,9 +207,9 @@ JohtoWaterWildMons:
 
 	def_water_wildmons NEW_BARK_TOWN
 	db 6 percent ; encounter rate
-	db 20, TENTACOOL
-	db 15, TENTACOOL
-	db 20, TENTACRUEL
+	db 25, TENTACOOL
+	db 25, TENTACOOL
+	db 30, TENTACRUEL
 	end_water_wildmons
 
 	def_water_wildmons CHERRYGROVE_CITY

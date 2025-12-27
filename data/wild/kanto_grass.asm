@@ -61,113 +61,113 @@ KantoGrassWildMons:
 	def_grass_wildmons ROCK_TUNNEL_1F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
-	db 10, CUBONE
-	db 11, GEODUDE
-	db 12, MACHOP
-	db 12, ZUBAT
-	db 15, MACHOKE
-	db 12, MAROWAK
-	db 12, MAROWAK
+	db 42, CUBONE
+	db 44, GEODUDE
+	db 43, MACHOP
+	db 42, ZUBAT
+	db 45, MACHOKE
+	db 45, MAROWAK
+	db 44, MAROWAK
 	; day
-	db 10, CUBONE
-	db 11, GEODUDE
-	db 12, MACHOP
-	db 12, ZUBAT
-	db 15, MACHOKE
-	db 12, MAROWAK
-	db 12, MAROWAK
+	db 42, CUBONE
+	db 44, GEODUDE
+	db 43, MACHOP
+	db 42, ZUBAT
+	db 45, MACHOKE
+	db 45, MAROWAK
+	db 44, MAROWAK
 	; nite
-	db 12, ZUBAT
-	db 11, GEODUDE
-	db 12, GEODUDE
-	db 17, HAUNTER
-	db 15, ZUBAT
-	db 15, ZUBAT
-	db 15, ZUBAT
+	db 42, ZUBAT
+	db 44, GEODUDE
+	db 43, GEODUDE
+	db 42, HAUNTER
+	db 42, ZUBAT
+	db 44, GOLBAT
+	db 45, GOLBAT
 	end_grass_wildmons
 
 	def_grass_wildmons ROCK_TUNNEL_B1F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
-	db 12, CUBONE
-	db 14, GEODUDE
-	db 16, ONIX
-	db 12, ZUBAT
-	db 15, MAROWAK
-	db 15, KANGASKHAN
-	db 15, KANGASKHAN
+	db 42, CUBONE
+	db 44, GEODUDE
+	db 46, ONIX
+	db 42, ZUBAT
+	db 45, MAROWAK
+	db 45, KANGASKHAN
+	db 45, KANGASKHAN
 	; day
-	db 12, CUBONE
-	db 14, GEODUDE
-	db 16, ONIX
-	db 12, ZUBAT
-	db 15, MAROWAK
-	db 15, KANGASKHAN
-	db 15, KANGASKHAN
+	db 42, CUBONE
+	db 44, GEODUDE
+	db 46, ONIX
+	db 42, ZUBAT
+	db 45, MAROWAK
+	db 45, KANGASKHAN
+	db 45, KANGASKHAN
 	; nite
-	db 12, ZUBAT
-	db 14, GEODUDE
-	db 16, ONIX
-	db 15, ZUBAT
-	db 15, HAUNTER
-	db 15, GOLBAT
-	db 15, GOLBAT
+	db 42, ZUBAT
+	db 44, GEODUDE
+	db 46, ONIX
+	db 45, ZUBAT
+	db 45, HAUNTER
+	db 45, GOLBAT
+	db 45, GOLBAT
 	end_grass_wildmons
 
 	def_grass_wildmons VICTORY_ROAD
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
-	db 34, GRAVELER
-	db 32, RHYHORN
-	db 33, ONIX
-	db 34, GOLBAT
-	db 35, SANDSLASH
-	db 35, RHYDON
-	db 35, RHYDON
+	db 44, GOLEM
+	db 42, RHYDON
+	db 43, DONPHAN
+	db 44, GOLBAT
+	db 45, SANDSLASH
+	db 45, ONIX
+	db 45, STEELIX
 	; day
-	db 34, GRAVELER
-	db 32, RHYHORN
-	db 33, ONIX
-	db 34, GOLBAT
-	db 35, SANDSLASH
-	db 35, RHYDON
-	db 35, RHYDON
+	db 44, GOLEM
+	db 42, RHYDON
+	db 43, DONPHAN
+	db 44, GOLBAT
+	db 45, SANDSLASH
+	db 45, ONIX
+	db 45, STEELIX
 	; nite
-	db 34, GOLBAT
-	db 34, GRAVELER
-	db 32, ONIX
-	db 36, GRAVELER
-	db 38, GRAVELER
-	db 40, GRAVELER
-	db 40, GRAVELER
+	db 44, GOLEM
+	db 42, RHYDON
+	db 43, DONPHAN
+	db 44, GOLBAT
+	db 45, SANDSLASH
+	db 45, ONIX
+	db 45, STEELIX
 	end_grass_wildmons
 
 	def_grass_wildmons TOHJO_FALLS
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
-	db 22, ZUBAT
-	db 22, RATICATE
-	db 24, GOLBAT
-	db 21, SLOWPOKE
-	db 20, RATTATA
-	db 23, SLOWPOKE
-	db 23, SLOWPOKE
+	db 30, ZUBAT
+	db 30, RATICATE
+	db 30, GOLBAT
+	db 28, SLOWPOKE
+	db 30, RATTATA
+	db 30, SLOWPOKE
+	db 30, SLOWPOKE
 	; day
-	db 22, ZUBAT
-	db 22, RATICATE
-	db 24, GOLBAT
-	db 21, SLOWPOKE
-	db 20, RATTATA
-	db 23, SLOWPOKE
-	db 23, SLOWPOKE
+	db 30, ZUBAT
+	db 30, RATICATE
+	db 30, GOLBAT
+	db 28, SLOWPOKE
+	db 30, RATTATA
+	db 30, SLOWPOKE
+	db 30, SLOWPOKE
 	; nite
-	db 22, ZUBAT
-	db 22, RATICATE
-	db 24, GOLBAT
-	db 21, SLOWPOKE
-	db 20, RATTATA
-	db 23, SLOWPOKE
-	db 23, SLOWPOKE
+	db 30, ZUBAT
+	db 30, RATICATE
+	db 30, GOLBAT
+	db 28, SLOWPOKE
+	db 30, RATTATA
+	db 30, SLOWPOKE
+	db 30, SLOWPOKE
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_1
@@ -425,29 +425,29 @@ KantoGrassWildMons:
 	def_grass_wildmons ROUTE_10_NORTH
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 15, SPEAROW
-	db 17, VOLTORB
-	db 15, RATICATE
-	db 15, FEAROW
-	db 15, MAROWAK
-	db 16, ELECTABUZZ
-	db 16, ELECTABUZZ
+	db 35, SPEAROW
+	db 37, VOLTORB
+	db 35, RATICATE
+	db 45, FEAROW
+	db 45, MAROWAK
+	db 46, ELECTABUZZ
+	db 46, ELECTABUZZ
 	; day
-	db 15, SPEAROW
-	db 17, VOLTORB
-	db 15, RATICATE
-	db 15, FEAROW
-	db 15, MAROWAK
-	db 18, ELECTABUZZ
-	db 18, ELECTABUZZ
+	db 35, SPEAROW
+	db 37, VOLTORB
+	db 35, RATICATE
+	db 45, FEAROW
+	db 45, MAROWAK
+	db 48, ELECTABUZZ
+	db 48, ELECTABUZZ
 	; nite
-	db 15, VENONAT
-	db 17, VOLTORB
-	db 15, RATICATE
-	db 15, VENOMOTH
-	db 15, ZUBAT
-	db 16, ELECTABUZZ
-	db 16, ELECTABUZZ
+	db 35, VENONAT
+	db 37, VOLTORB
+	db 35, RATICATE
+	db 45, VENOMOTH
+	db 35, ZUBAT
+	db 46, ELECTABUZZ
+	db 46, ELECTABUZZ
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_11
@@ -761,57 +761,57 @@ KantoGrassWildMons:
 	def_grass_wildmons ROUTE_26
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 28, DODUO
-	db 28, SANDSLASH
-	db 32, PONYTA
-	db 30, RATICATE
-	db 30, DODUO
-	db 30, ARBOK
-	db 30, ARBOK
+	db 38, DODRIO
+	db 38, ARBOK
+	db 39, PONYTA
+	db 42, RAPIDASH
+	db 42,  DODRIO
+	db 42, DODRIO
+	db 5,  BULBASAUR
 	; day
-	db 28, DODUO
-	db 28, SANDSLASH
-	db 32, PONYTA
-	db 30, RATICATE
-	db 30, DODUO
-	db 30, ARBOK
-	db 30, ARBOK
+	db 38, DODRIO
+	db 38, ARBOK
+	db 39, PONYTA
+	db 42, RAPIDASH
+	db 42,  DODRIO
+	db 42, DODRIO
+	db 5,  CHARMANDER
 	; nite
-	db 28, NOCTOWL
-	db 28, RATICATE
-	db 32, NOCTOWL
-	db 30, RATICATE
-	db 30, QUAGSIRE
-	db 30, QUAGSIRE
-	db 30, QUAGSIRE
+	db 38, MURKROW
+	db 38, ARBOK
+	db 39, PONYTA
+	db 42, RAPIDASH
+	db 42, DODRIO
+	db 42, DODRIO
+	db 5,  SQUIRTLE
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_27
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 28, DODUO
-	db 28, ARBOK
-	db 30, RATICATE
-	db 30, DODUO
-	db 32, PONYTA
-	db 30, DODRIO
-	db 30, DODRIO
+	db 38, DODRIO
+	db 38, ARBOK
+	db 39, PONYTA
+	db 42, RAPIDASH
+	db  5, CHIKORITA
+	db 42, DODRIO
+	db 42, DODRIO
 	; day
-	db 28, DODUO
-	db 28, ARBOK
-	db 30, RATICATE
-	db 30, DODUO
-	db 32, PONYTA
-	db 30, DODRIO
-	db 30, DODRIO
+	db 38, DODRIO
+	db 38, ARBOK
+	db 39, PONYTA
+	db 42, RAPIDASH
+	db  5, CYNDAQUIL
+	db 42, DODRIO
+	db 42, DODRIO
 	; nite
-	db 28, QUAGSIRE
-	db 28, NOCTOWL
-	db 30, RATICATE
-	db 30, QUAGSIRE
-	db 32, NOCTOWL
-	db 32, NOCTOWL
-	db 32, NOCTOWL
+	db 38, MURKROW
+	db 38, ARBOK
+	db 39, PONYTA
+	db 42, RAPIDASH
+	db  5, TOTODILE
+	db 42, DODRIO
+	db 42, DODRIO
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_28
