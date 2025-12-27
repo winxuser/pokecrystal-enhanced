@@ -35,11 +35,12 @@ Marts:
 	assert_table_length NUM_MARTS
 
 MartCherrygrove:
-	db 4 ; # items
+	db 5 ; # items
 	db POTION
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db AWAKENING
+	db POKE_BALL
 	db -1 ; end
 
 MartCherrygroveDex:
@@ -138,8 +139,9 @@ MartGoldenrod5F:
 	db -1 ; end
 
 MartOlivine:
-	db 9 ; # items
+	db 10 ; # items
 	db GREAT_BALL
+	db MASTER_BALL
 	db SUPER_POTION
 	db HYPER_POTION
 	db ANTIDOTE
@@ -165,11 +167,17 @@ MartEcruteak:
 	db -1 ; end
 
 MartMahogany1:
-	db 4 ; # items
+	db 10 ; # items
 	db TINYMUSHROOM
 	db SLOWPOKETAIL
 	db POKE_BALL
 	db POTION
+	db FIRE_STONE
+	db WATER_STONE
+	db THUNDERSTONE
+	db LEAF_STONE
+	db MOON_STONE
+	db SUN_STONE
 	db -1 ; end
 
 MartMahogany2:
@@ -321,9 +329,10 @@ MartCeladon5F2:
 	db -1 ; end
 
 MartFuchsia:
-	db 7 ; # items
+	db 8 ; # items
 	db GREAT_BALL
 	db ULTRA_BALL
+	db MASTER_BALL
 	db SUPER_POTION
 	db HYPER_POTION
 	db FULL_HEAL
@@ -332,9 +341,10 @@ MartFuchsia:
 	db -1 ; end
 
 MartSaffron:
-	db 8 ; # items
+	db 9 ; # items
 	db GREAT_BALL
 	db ULTRA_BALL
+	db MASTER_BALL
 	db HYPER_POTION
 	db MAX_POTION
 	db FULL_HEAL
