@@ -13,6 +13,15 @@ _UpdatePlayerSprite::
 	ld a, [wUsedSprites + 1]
 	ldh [hUsedSpriteTile], a
 	call GetUsedSprite
+	call AddFollowSprite
+	ret
+
+AddFollowSprite:
+	ld a, [wUsedSprites + FOLLOWER * 2]
+	ldh [hUsedSpriteIndex], a
+	ld a, [wUsedSprites + FOLLOWER * 2 + 1]
+	ldh [hUsedSpriteTile], a
+	call GetUsedSprite
 	ret
 
 LoadStandingSpritesGFX: ; mobile
@@ -48,6 +57,7 @@ RefreshSprites::
 	ld hl, wUsedSprites
 	call ByteFill
 	call GetPlayerSprite
+;	call GetFollowerSprite
 	call AddMapSprites
 	call LoadAndSortSprites
 	ret
@@ -118,6 +128,8 @@ AddIndoorSprites:
 	ret
 
 AddOutdoorSprites:
+	ld a, SPRITE_FOLLOWER
+	call AddSpriteGFX
 	ld a, [wMapGroup]
 	dec a
 	ld c, a
@@ -128,14 +140,12 @@ AddOutdoorSprites:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld c, MAX_OUTDOOR_SPRITES
 .loop
-	push bc
 	ld a, [hli]
+	and a
+	ret z
 	call AddSpriteGFX
-	pop bc
-	dec c
-	jr nz, .loop
+	jr .loop
 	ret
 
 LoadUsedSpritesGFX:
@@ -168,6 +178,8 @@ SafeGetSprite:
 	ret
 
 GetSprite:
+	call GetFollowingSprite
+	ret c
 	call GetMonSprite
 	ret c
 
@@ -258,9 +270,142 @@ GetMonSprite:
 	and a
 	ret
 
+GetFirstAliveMon::
+	ld e, 0
+	ld a, [wPartyCount]
+	ld d, a
+	and a
+	jr z, .none
+
+	ld hl, wPartyMon1HP
+	ld bc, wPartyMon2 - wPartyMon1
+.loop
+	ld a, [hli]
+	or [hl]
+	jr nz, .ok
+	inc e
+	ld a, e
+	cp d
+	jr nc, .none
+	add hl, bc
+	jr .loop
+.ok
+	ld bc, wPartyMon1Species - (wPartyMon1HP + 1)
+	add hl, bc
+	ld a, [hl]
+	ret
+.none
+	xor a
+	ret
+
+GetFollowingSprite:
+	cp SPRITE_FOLLOWER
+	jr nz, .nope
+
+	call GetFirstAliveMon
+	ld [wFollowerSpriteID], a
+	push af
+	ld a, e
+	ld [wFollowerPartyNum], a
+	pop af
+
+	call GetUnownSprite
+	ret c
+
+	push af
+	dec a
+	ld de, 0
+.mod
+	inc de
+	sub 42
+	jr nc, .mod
+	dec de
+	add 42
+
+	push af
+	ld hl, PokemonSpritePointers
+	add hl, de
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop af
+
+	push bc
+	ld bc, 16 * 4 * 6
+	call AddNTimes
+	pop bc
+
+	ld d, h
+	ld e, l
+	ld h, 0
+	ld c, 12
+	ld l, WALKING_SPRITE
+
+	pop af
+
+	scf
+	ret
+.nope
+	and a
+	ret
+
+PokemonSpritePointers:
+	dba PokemonSprites1
+	dba PokemonSprites2
+	dba PokemonSprites3
+	dba PokemonSprites4
+	dba PokemonSprites5
+	dba PokemonSprites6
+
+GetUnownSprite:
+	push af
+	cp UNOWN
+	jr nz, .not_unown
+	ld a, [wFollowerPartyNum]
+	ld bc, PARTYMON_STRUCT_LENGTH
+	ld hl, wPartyMon1DVs
+	call AddNTimes
+	predef GetUnownLetter
+	ld a, [wUnownLetter]
+	dec a
+	ld hl, UnownSpritePointers
+	push af
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop af
+	push bc
+	ld bc, 16 * 4 * 6
+	call AddNTimes
+	pop bc
+	ld d, h
+	ld e, l
+	ld h, 0
+	ld c, 12
+	ld l, WALKING_SPRITE
+	pop af
+	scf
+	ret
+
+.not_unown
+	pop af
+	and a ; Clear carry flag
+	ret
+
+UnownSpritePointers:
+	dba UnownSprites
+
 _DoesSpriteHaveFacings::
 ; Checks to see whether we can apply a facing to a sprite.
 ; Returns carry unless the sprite is a Pokemon or a Still Sprite.
+	cp SPRITE_FOLLOWER
+	jr z, .follower
 	cp SPRITE_POKEMON
 	jr nc, .only_down
 
@@ -280,11 +425,19 @@ _DoesSpriteHaveFacings::
 	scf
 	ret
 
+.follower
+	ld a, WALKING_SPRITE
+
 .only_down
 	and a
 	ret
 
 _GetSpritePalette::
+	ld a, c
+	push bc
+	call GetFollowingSprite
+	pop bc
+	jr c, .follower
 	ld a, c
 	call GetMonSprite
 	jr c, .is_pokemon
@@ -303,9 +456,18 @@ _GetSpritePalette::
 	ld c, a
 	ret
 
+.follower
+	ld hl, FollowingPalettes
+	ld b, 0
+	ld c, a
+	add hl, bc
+	ld a, BANK(FollowingPalettes)
+	call GetFarByte
+	ld c, a
+	ret
+
 LoadAndSortSprites:
 	call LoadSpriteGFX
-	call SortUsedSprites
 	call ArrangeUsedSprites
 	ret
 
@@ -348,8 +510,6 @@ AddSpriteGFX:
 	ret
 
 LoadSpriteGFX:
-; BUG: LoadSpriteGFX does not limit the capacity of UsedSprites (see docs/bugs_and_glitches.md)
-
 	ld hl, wUsedSprites
 	ld b, SPRITE_GFX_LIST_CAPACITY
 .loop
@@ -357,7 +517,9 @@ LoadSpriteGFX:
 	and a
 	jr z, .done
 	push hl
+	push bc
 	call .LoadSprite
+	pop bc
 	pop hl
 	ld [hli], a
 	dec b
@@ -367,78 +529,10 @@ LoadSpriteGFX:
 	ret
 
 .LoadSprite:
-	call GetSprite
-	ld a, l
-	ret
-
-SortUsedSprites:
-; Bubble-sort sprites by type.
-
-; Run backwards through wUsedSprites to find the last one.
-
-	ld c, SPRITE_GFX_LIST_CAPACITY
-	ld de, wUsedSprites + (SPRITE_GFX_LIST_CAPACITY - 1) * 2
-.FindLastSprite:
-	ld a, [de]
-	and a
-	jr nz, .FoundLastSprite
-	dec de
-	dec de
-	dec c
-	jr nz, .FindLastSprite
-.FoundLastSprite:
-	dec c
-	jr z, .quit
-
-; If the length of the current sprite is
-; higher than a later one, swap them.
-
-	inc de
-	ld hl, wUsedSprites + 1
-
-.CheckSprite:
 	push bc
-	push de
-	push hl
-
-.CheckFollowing:
-	ld a, [de]
-	cp [hl]
-	jr nc, .loop
-
-; Swap the two sprites.
-
-	ld b, a
-	ld a, [hl]
-	ld [hl], b
-	ld [de], a
-	dec de
-	dec hl
-	ld a, [de]
-	ld b, a
-	ld a, [hl]
-	ld [hl], b
-	ld [de], a
-	inc de
-	inc hl
-
-; Keep doing this until everything's in order.
-
-.loop
-	dec de
-	dec de
-	dec c
-	jr nz, .CheckFollowing
-
-	pop hl
-	inc hl
-	inc hl
-	pop de
+	call GetSprite
 	pop bc
-	dec c
-	jr nz, .CheckSprite
-
-.quit
+	ld a, l
 	ret
 
 ArrangeUsedSprites:

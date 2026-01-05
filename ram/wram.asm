@@ -131,7 +131,10 @@ wUnusedScriptByte:: db
 
 wMapTimeOfDay:: db
 
-	ds 3
+	ds 1
+
+wFollowerSpriteID:: db
+wFollowerPartyNum:: db
 
 wPrinterConnectionOpen:: db
 wPrinterOpcode:: db
@@ -146,11 +149,12 @@ wLinkMode::
 	db
 
 wScriptVar:: db
+wScriptVar2:: db
 
 wPlayerNextMovement:: db
 wPlayerMovement:: db
 
-	ds 2
+	ds 1
 
 wMovementObject::
 	db
@@ -2905,6 +2909,8 @@ wPokedexEntryPageNum::  db
 wPokedexEvoStage2::		db
 wPokedexEvoStage3::     db
 
+wFollowerNextMovement:: db
+
 wDST::
 ; bit 7: dst
 	db
@@ -2916,7 +2922,7 @@ wGameTimeMinutes:: db
 wGameTimeSeconds:: db
 wGameTimeFrames::  db
 
-	ds 2
+;	ds 1
 
 wCurDay:: db
 
@@ -2924,6 +2930,7 @@ wPokedexShinyToggle::
 ; bit 0: set if displaying shiny palettes
 	db
 
+wFollowerFlags:: db
 wObjectFollow_Leader:: db
 wObjectFollow_Follower:: db
 wCenteredObject:: db
@@ -3024,6 +3031,7 @@ wPokegearFlags::
 	db
 wRadioTuningKnob:: db
 wLastDexMode:: db
+wFollowerState:: db
 wCurPokedexColor:: db ; current dex color
 wWhichRegisteredItem:: db
 wRegisteredItem:: db
@@ -3121,7 +3129,7 @@ wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
 
-	ds 49
+	ds 8
 
 ; fight counts
 wJackFightCount::    db

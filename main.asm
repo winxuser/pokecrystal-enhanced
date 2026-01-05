@@ -683,18 +683,23 @@ INCLUDE "engine/events/odd_egg.asm"
 
 
 SECTION "Nayru Pokedex", ROMX
+
 INCLUDE "engine/pokedex/pokedex.asm"
 
 
 SECTION "Custom GFX", ROMX
+
 INCLUDE "gfx/rangi_gfx.asm"
 
 
 SECTION "Map GroupNums Names", ROMX
+
 INCLUDE "data/maps/map_names.asm"
 
 
+
 SECTION "DEX GFX 2", ROMX
+
 IF USE_COMPRESSED_POKEDEX_GFX == TRUE
 PokedexLZ:
 INCBIN "gfx/pokedex/pokedex.2bpp.lz"
@@ -704,11 +709,9 @@ ELSE
 ; IF USE_COMPRESSED_POKEDEX_GFX == FALSE
 PokedexGFX:
 INCBIN "gfx/pokedex/pokedex.2bpp"
-
 PokedexSlowpokeGFX:
 INCBIN "gfx/pokedex/slowpoke.2bpp"
 ENDC
-
 Pokedex_ExtraTiles:
 INCBIN "gfx/pokedex/rangi_dex_tiles.2bpp"
 Pokedex_PageNumTiles:
@@ -716,6 +719,7 @@ INCBIN "gfx/pokedex/dex_pagenums.2bpp"
 
 
 SECTION "Bank3E Overflow", ROMX
+
 INCLUDE "engine/link/time_capsule.asm"
 INCLUDE "engine/link/time_capsule_2.asm"
 INCLUDE "engine/events/magikarp.asm"
@@ -727,6 +731,12 @@ INCBIN "gfx/pokedex/inversed_feet_inches.1bpp"
 Pokedex_RightArrow_Tile:
 INCBIN "gfx/pokedex/inversed_rightarrow.1bpp"
 
+
+
+SECTION "Following", ROMX
+
+INCLUDE "gfx/following_palettes.asm"
+INCLUDE "engine/events/follower.asm"
 
 
 SECTION "Stadium 2 Checksums", ROMX[$7DE0], BANK[$7F]

@@ -234,6 +234,11 @@ ScriptCommandTable:
 	dw Script_getname                    ; a7
 	dw Script_wait                       ; a8
 	dw Script_checksave                  ; a9
+	dw Script_freezefollower             ; aa
+	dw Script_unfreezefollower           ; ab
+	dw Script_getfollowerdirection       ; ac
+	dw Script_checkfollowerswapped       ; ad
+	dw Script_followcry                  ; ae
 	assert_table_length NUM_EVENT_COMMANDS
 
 StartScript:
@@ -802,7 +807,6 @@ GetScriptObject:
 	ret z
 	cp LAST_TALKED
 	ret z
-	dec a
 	ret
 
 Script_setlasttalked:
@@ -1243,13 +1247,14 @@ Script_memcall:
 	ld d, [hl]
 	; fallthrough
 
-ScriptCall:
-; BUG: ScriptCall can overflow wScriptStack and crash (see docs/bugs_and_glitches.md)
-
-	push de
+ScriptCall::
 	ld hl, wScriptStackSize
-	ld e, [hl]
+	ld a, [hl]
+	cp 5
+	ret nc
+	push de
 	inc [hl]
+	ld e, a
 	ld d, 0
 	ld hl, wScriptStack
 	add hl, de
@@ -2176,10 +2181,6 @@ Script_warpcheck:
 	farcall EnableEvents
 	ret
 
-Script_enableevents: ; unreferenced
-	farcall EnableEvents
-	ret
-
 Script_newloadmap:
 	call GetScriptByte
 	ldh [hMapEntryMethod], a
@@ -2205,9 +2206,6 @@ Script_writeunusedbyte:
 	call GetScriptByte
 	ld [wUnusedScriptByte], a
 	ret
-
-UnusedClosetextScript: ; unreferenced
-	closetext
 
 Script_closetext:
 	call HDMATransferTilemapAndAttrmap_Menu
@@ -2356,14 +2354,37 @@ Script_checksave:
 	ld [wScriptVar], a
 	ret
 
-Script_checkver_duplicate: ; unreferenced
-	ld a, [.gs_version]
-	ld [wScriptVar], a
+Script_freezefollower:
+	ld bc, wObject1Struct
+	call DoesObjectHaveASprite
+	ret z
+	ld hl, OBJECT_FLAGS2
+	add hl, bc
+	set FROZEN_F, [hl]
+	ld hl, wFollowerFlags
+	set FOLLOWER_FROZEN_F, [hl]
 	ret
 
-.gs_version:
-	db GS_VERSION
+Script_unfreezefollower:
+	ld bc, wObject1Struct
+	call DoesObjectHaveASprite
+	ret z
+	ld hl, OBJECT_FLAGS2
+	add hl, bc
+	res FROZEN_F, [hl]
+	ld hl, wFollowerFlags
+	res FOLLOWER_FROZEN_F, [hl]
+	ret
 
+Script_getfollowerdirection:
+	farcall Script_GetFollowerDirectionFromPlayer
+	ret
+
+Script_checkfollowerswapped:
+	ld a, [wFollowerFlags] ; swap flag is bit 0
+	and 1
+	ld [wScriptVar], a
+	ret
 
 AppendTMHMMoveName::
 ; a = item ID
@@ -2390,3 +2411,7 @@ AppendTMHMMoveName::
 	inc hl
 	ld de, wStringBuffer1
 	jp CopyName2
+
+Script_followcry:
+	ld a, [wFollowerSpriteID]
+	jp PlayMonCry

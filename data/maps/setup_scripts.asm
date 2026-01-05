@@ -36,11 +36,12 @@ MapSetupScript_Warp:
 	mapsetup LoadMapAttributes
 	mapsetup HandleNewMap
 	mapsetup SpawnPlayer
-	mapsetup RefreshPlayerCoords
+	mapsetup MapPlayerCoordWarped
 	mapsetup GetMapScreenCoords
 	mapsetup LoadBlockData
 	mapsetup BufferScreen
 	mapsetup LoadMapGraphics
+	mapsetup UpdateFollowerPositionAfterWarp
 	mapsetup LoadMapTimeOfDay
 	mapsetup LoadMapObjects
 	mapsetup EnableLCD
@@ -59,12 +60,13 @@ MapSetupScript_BadWarp:
 	mapsetup LoadMapAttributes
 	mapsetup HandleNewMap
 	mapsetup SpawnPlayer
-	mapsetup RefreshPlayerCoords
+	mapsetup MapPlayerCoordWarped
 	mapsetup GetMapScreenCoords
 	mapsetup LoadBlockData
 	mapsetup BufferScreen
 	mapsetup DisableLCD
 	mapsetup LoadMapGraphics
+	mapsetup UpdateFollowerPositionAfterWarp
 	mapsetup LoadMapTimeOfDay
 	mapsetup FadeOutMapMusic
 	mapsetup EnableLCD
@@ -83,7 +85,7 @@ MapSetupScript_Connection:
 	mapsetup EnterMapConnection
 	mapsetup LoadMapAttributes
 	mapsetup HandleNewMap
-	mapsetup RefreshPlayerCoords
+	mapsetup MapPlayerCoordWarped
 	mapsetup LoadBlockData
 	mapsetup LoadMapTileset
 	mapsetup SaveScreen
@@ -106,11 +108,12 @@ MapSetupScript_Train:
 	mapsetup LoadMapAttributes
 	mapsetup GetWarpDestCoords
 	mapsetup HandleNewMap
-	mapsetup RefreshPlayerCoords
+	mapsetup MapPlayerCoordWarped
 	mapsetup LoadBlockData
 	mapsetup BufferScreen
 	mapsetup DisableLCD
 	mapsetup LoadMapGraphics
+	mapsetup UpdateFollowerPositionAfterWarp
 	mapsetup LoadMapTimeOfDay
 	mapsetup FadeOutMapMusic
 	mapsetup EnableLCD
